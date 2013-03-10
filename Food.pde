@@ -19,6 +19,7 @@ class Food {
   void update() {
     location.add(velocity);
     velocity.add(acceleration);
+    acceleration.mult(0);
     //lifespan -= 2.0;
   }
 
@@ -30,16 +31,7 @@ class Food {
   }
 
   void applyForce(PVector r) {
-    for (Food f: foods) {
-      f.applyForce(r);
-    }
-  }
-
-  void applyRepeller(Creature creature) {
-    for (Food f: foods) {
-      PVector force = creature.repel(f);
-      f.applyForce(force);
-    }
+    acceleration.add(r);
   }
 
   boolean isDead() {
@@ -51,4 +43,3 @@ class Food {
     }
   }
 }
-
